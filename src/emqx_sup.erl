@@ -72,6 +72,8 @@ init([]) ->
     CMSup = supervisor_spec(emqx_cm_sup),
     %% Sys Sup
     SysSup = supervisor_spec(emqx_sys_sup),
+    %% Delayed Publish Sup
+    DelayedPublish = supervisor_spec(emqx_delayed_publish),
     {ok, {{one_for_all, 0, 1},
           [KernelSup,
            RouterSup,
@@ -79,7 +81,8 @@ init([]) ->
            BridgeSup,
            SMSup,
            CMSup,
-           SysSup]}}.
+           SysSup,
+           DelayedPublish]}}.
 
 %%--------------------------------------------------------------------
 %% Internal functions
